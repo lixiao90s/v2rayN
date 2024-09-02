@@ -38,5 +38,6 @@
         DispatcherReload,
         DispatcherRefreshServersBiz,
         DispatcherRefreshIcon,
+        RandomServer,
     }
 }

@@ -366,7 +366,6 @@ namespace ServiceLib.ViewModels
 
             TaskHandler.Instance.RegUpdateTask(_config, UpdateTaskHandler);
             RefreshRoutingsMenu();
-            //RefreshServers();
 
             Reload();
             ChangeSystemProxyStatusAsync(_config.systemProxyItem.sysProxyType, true);

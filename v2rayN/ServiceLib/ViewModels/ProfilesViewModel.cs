@@ -102,6 +102,7 @@ namespace ServiceLib.ViewModels
             _updateView = updateView;
 
             MessageBus.Current.Listen<string>(Global.CommandRefreshProfiles).Subscribe(async x => await _updateView?.Invoke(EViewAction.DispatcherRefreshServersBiz, null));
+            MessageBus.Current.Listen<string>("RandomServer").Subscribe(async x => await _updateView?.Invoke(EViewAction.RandomServer, null));
 
             SelectedProfile = new();
             SelectedSub = new();
@@ -781,5 +782,28 @@ namespace ServiceLib.ViewModels
         }
 
         #endregion Subscription
+
+        #region Third
+
+        public void RandomServer()
+        {
+            var lstModel = LazyConfig.Instance.ProfileItemsEx(_config.subIndexId, _serverFilter);
+            _lstProfile = JsonUtils.Deserialize<List<ProfileItem>>(JsonUtils.Serialize(lstModel)) ?? [];
+
+            _profileItems.Clear();
+            _profileItems.AddRange(lstModel);
+            if (lstModel.Count > 1)
+            {
+                ProfileItemModel item = SelectedProfile;
+                while (SelectedProfile == item)
+                {
+                    item = lstModel[new Random().Next(lstModel.Count)];
+                }
+                SelectedProfile = item;
+            }
+            SetDefaultServer();
+        }
+
+        #endregion
     }
 }

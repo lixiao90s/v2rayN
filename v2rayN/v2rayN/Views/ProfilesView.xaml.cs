@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
 using v2rayN.Base;
+using v2rayN.ThirdApi;
 using Point = System.Windows.Point;
 
 namespace v2rayN.Views
@@ -43,6 +44,9 @@ namespace v2rayN.Views
             }
 
             ViewModel = new ProfilesViewModel(UpdateViewHandler);
+
+            ThirdApp.Instance.ViewModel = ViewModel;
+
             Locator.CurrentMutable.RegisterLazySingleton(() => ViewModel, typeof(ProfilesViewModel));
 
             this.WhenActivated(disposables =>
@@ -171,6 +175,13 @@ namespace v2rayN.Views
                     Application.Current?.Dispatcher.Invoke((() =>
                     {
                         ViewModel?.RefreshServersBiz();
+                    }), DispatcherPriority.Normal);
+                    break;
+
+                case EViewAction.RandomServer:
+                    Application.Current?.Dispatcher.Invoke((() =>
+                    {
+                        ViewModel?.RandomServer();
                     }), DispatcherPriority.Normal);
                     break;
             }
