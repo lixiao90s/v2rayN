@@ -721,6 +721,12 @@ namespace ServiceLib.ViewModels
 
         private void CheckUpdateN()
         {
+            if (true)
+            {
+                _noticeHandler?.SendMessage("V2RayN 不可以更新");
+                return;
+            }
+
             //Check for standalone windows .Net version
             if (Utils.IsWindows()
                 && File.Exists(Path.Combine(Utils.StartupPath(), "wpfgfx_cor3.dll"))

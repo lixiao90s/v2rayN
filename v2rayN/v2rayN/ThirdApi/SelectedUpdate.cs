@@ -36,7 +36,7 @@ public class SelectedUpdate : IRequestCommand
             var selected = ThirdApp.Instance.GetSelectedServer();
             if (selected != null)
             {
-                responseCommand.data = selected.address;
+                responseCommand.data = selected.port.ToString();
             }
 
         }

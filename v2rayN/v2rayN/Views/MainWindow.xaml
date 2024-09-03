@@ -634,6 +634,7 @@
                     </ContextMenu>
                 </tb:TaskbarIcon.ContextMenu>
             </tb:TaskbarIcon>
+            <Label Content="CustomVersion:1.0.0" HorizontalAlignment="Left" Height="28" Margin="754,14,0,0" VerticalAlignment="Top" Width="126"/>
         </Grid>
     </materialDesign:DialogHost>
 </reactiveui:ReactiveWindow>
